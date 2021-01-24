@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags-->
+	<meta name="description" content="Calcula el dígito verificador para que un rut sea válido">
+	<title>Generador de RUT ficticio</title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"><!-- Custom styles for this template--><link href="css/cover.css" rel="stylesheet"><link href="main.css" rel="stylesheet"><!--link(rel="stylesheet" href="main.css")--><!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries--><!-- WARNING: Respond.js doesn't work if you view the page via file://--><!--if lt IE 9script(src='https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js')
+	script(src='https://oss.maxcdn.com/respond/1.4.2/respond.min.js')-->
+</head>
+
+<body>
+	<div class="site-wrapper">
+	<div class="site-wrapper-inner">
+		<div class="cover-container">
+			<div ng-controller="RutController as rutCtrl" class="inner cover">
+				<div class="row">
+					<h1 class="cover-heading"><span class="text-highlight-orange">GENERADOR</span> DE RUT FICTICIO</h1>
+					<p><strong>Cambia el primer dígito de tu RUT por un 3 </strong>(no ingreses el dígito verificador ya que el mismo programa calculará uno nuevo). En caso de que tu RUT sea menor a 10 millones agrega un 3 al comienzo.</p>
+					<p class="explicacion"><em><strong>Ejemplo:</strong> Mi RUT es el 12.345.678-9, en el generador debes ingresar: 32.345.678.</em></br><em> Mi RUT es el 1.345.678-0, en el generador debes ingresar: 31.345.678</em></p>
+				
+
+					<p class="lead"><input style="text-align: center;" type="text" placeholder="escribir RUT sin DV" ng-model="rutCtrl.input" ng-change="rutCtrl.generateRut()" maxlength="8"></p>
+
+					<div id="options" class="collapse"><div class="well"><form class="form-horizontal"><div class="form-group"><div class="col-sm-3"><input type="number" ng-model="rutCtrl.rutOpts.quantity" maxlength="8" class="form-control"></div></div><div class="form-group"><label class="col-sm-4 control-label">Valor mínimo</label><div class="col-sm-3"><input type="number" ng-model="rutCtrl.rutOpts.minValue" maxlength="8" class="form-control"></div></div><div class="form-group"><label class="col-sm-4 control-label">Valor máximo</label><div class="col-sm-3"><input type="number" ng-model="rutCtrl.rutOpts.maxValue" maxlength="8" class="form-control"></div></div><div class="form-group"><div class="col-sm-offset-4 col-sm-3"><button ng-click="rutCtrl.download()" class="btn btn-default"><span aria-hidden="true" class="glyphicon glyphicon-download-alt"></span> Descargar RUTs generados</button></div></div></form></div></div>
+
+					<p class="lead">Abajo aparecerá el resultado con un dígito verificador válido. Este formulario no guarda ningún dato, ni información del usuario.</p>
+				
+				</div>
+
+				<div class="row"><div ng-repeat="rut in rutCtrl.ruts| orderBy:'number'" class=""><h4 select-text="select-text">{{ rut | rutFormat }}</h4></div></div></div>
+
+			<div class="mastfoot">
+				<div class="inner">
+					<p>Script creado por: <a href="https://twitter.com/nomesigaporfa">@nomesigaporfa</a>.</p>
+					<p>Template gracias a <a href="https://twitter.com/mdo">@mdo</a>.</p>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="https://cdn.rawgit.com/eddywashere/angular-select-text/master/src/angular-select-text.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>
